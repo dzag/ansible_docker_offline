@@ -10,6 +10,6 @@
 - name: Check and download
   ansible.builtin.include_tasks:
     file: check_and_download.yml
-  loop: "{{ run_docker_binaries | dict2items }}"
+  loop: "{{ download_docker_binaries | dict2items }}"
   loop_control:
     loop_var: pkg
