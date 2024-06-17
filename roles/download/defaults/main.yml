@@ -1,0 +1,36 @@
+---
+# defaults file for run
+
+download_containerd_version: "1.6.32-1_amd64"
+download_docker_ce_version: "26.1.3-1~ubuntu.22.04~jammy_amd64"
+download_docker_buildx_plugin_version: "0.14.0-1~ubuntu.22.04~jammy_amd64"
+download_docker_compose_plugin_version: "2.27.0-1~ubuntu.22.04~jammy_amd64"
+download_ubuntu_codename: "jammy"
+
+download_base_url: "https://download.docker.com/linux/ubuntu/dists/{{ download_ubuntu_codename }}/pool/stable/amd64"
+
+download_docker_binaries:
+  containerd:
+    version: "{{ download_containerd_version }}"
+    url: "{{ download_base_url }}/containerd.io_{{ download_containerd_version }}.deb"
+    checksum: ""
+  docker_ce:
+    version: "{{ download_docker_ce_version }}"
+    url: "{{ download_base_url }}/docker-ce_{{ download_docker_ce_version }}.deb"
+    checksum: ""
+  docker_ce_rootless:
+    version: "{{ download_docker_ce_version }}"
+    url: "{{ download_base_url }}/docker-ce-rootless-extras_{{ download_docker_ce_version }}.deb"
+    checksum: ""
+  docker_ce_cli:
+    version: "{{ download_docker_ce_version }}"
+    url: "{{ download_base_url }}/docker-ce-cli_{{ download_docker_ce_version }}.deb"
+    checksum: ""
+  docker_buildx:
+    version: "{{ download_docker_buildx_plugin_version }}"
+    url: "{{ download_base_url }}/docker-buildx-plugin_{{ download_docker_buildx_plugin_version }}.deb"
+    checksum: ""
+  docker_compose:
+    version: "{{ download_docker_compose_plugin_version }}"
+    url: "{{ download_base_url }}/docker-compose-plugin_{{ download_docker_compose_plugin_version }}.deb"
+    checksum: ""

@@ -1,0 +1,18 @@
+---
+
+- name: "Check and download"
+  ansible.builtin.debug:
+    msg: >
+      Check and download: "{{ pkg.key }}.{{ pkg.value.version }}"
+
+- name: "Ensure package existed"
+  ansible.builtin.stat:
+    path: "/tmp/docker/{{ pkg.key }}.deb"
+  register: pkg_stat
+
+- name: "Download package"
+  ansible.builtin.get_url:
+    url: "{{ pkg.value.url }}"
+    dest: "/tmp/docker/{{ pkg.key }}.deb"
+    mode: '1777'
+  when: not pkg_stat.stat.exists

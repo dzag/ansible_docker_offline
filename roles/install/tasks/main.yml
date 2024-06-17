@@ -1,0 +1,26 @@
+---
+
+- name: Get package facts
+  ansible.builtin.package_facts:
+    manager: auto
+  when: has_docker is undefined or has_docker == None
+
+- name: Set docker facts
+  ansible.builtin.set_fact:
+    has_docker: "{{ 'docker-ce' in ansible_facts.packages }}"
+
+- name: Docker facts debug
+  ansible.builtin.debug:
+    msg: "has_docker: {{ has_docker }}"
+
+- name: Copy docker binaries
+  ansible.builtin.copy:
+    src: /tmp/docker
+    dest: /tmp/docker
+    mode: "1777"
+  when: not has_docker
+
+- name: Install docker binaries
+  ansible.builtin.include_tasks:
+    file: install_debs.yml
+  when: not has_docker

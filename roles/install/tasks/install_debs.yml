@@ -1,0 +1,13 @@
+---
+
+- name: "Install debs"
+  ansible.builtin.shell:
+    cmd: "dpkg -i {{ install_files_dir }}/*.deb"
+  changed_when: false
+
+- name: "Add user to group"
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    groups:
+      - docker
+    append: true
