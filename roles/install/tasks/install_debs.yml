@@ -1,6 +1,7 @@
 ---
 
 - name: "Install debs"
+  become: true
   ansible.builtin.shell:
     cmd: "dpkg -i {{ install_files_dir }}/*.deb"
   changed_when: false
