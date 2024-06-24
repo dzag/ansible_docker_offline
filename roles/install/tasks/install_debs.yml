@@ -1,9 +1,15 @@
 ---
 
+- name: "Whomani"
+  tags: debug
+  ansible.builtin.command:
+    cmd: "whoami"
+  changed_when: false
+  when: "'debug' in ansible_run_tags"
+
 - name: "Install debs"
-  become: true
   ansible.builtin.shell:
-    cmd: "sudo dpkg -i {{ install_files_dir }}/*.deb"
+    cmd: "dpkg -i {{ install_files_dir }}/*.deb"
   changed_when: false
 
 - name: "Add user to group"

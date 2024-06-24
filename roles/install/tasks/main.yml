@@ -15,12 +15,15 @@
 
 - name: Copy docker binaries
   ansible.builtin.copy:
-    src: /tmp/docker
+    src: /tmp/docker/
     dest: /tmp/docker
     mode: "1777"
   when: not has_docker
 
 - name: Install docker binaries
+  vars: 
+    ansible_become_user: root
+    ansible_become_method: ansible.builtin.sudo
   ansible.builtin.include_tasks:
     file: install_debs.yml
   when: not has_docker
