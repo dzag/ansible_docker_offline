@@ -3,7 +3,7 @@
 - name: "Install debs"
   become: true
   ansible.builtin.shell:
-    cmd: "dpkg -i {{ install_files_dir }}/*.deb"
+    cmd: "sudo dpkg -i {{ install_files_dir }}/*.deb"
   changed_when: false
 
 - name: "Add user to group"
